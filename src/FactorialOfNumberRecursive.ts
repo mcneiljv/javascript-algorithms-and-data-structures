@@ -13,7 +13,7 @@
 // 2 loops - O(n^2)
 // Input size reduced by half - O(log n)
 
-// Big O Notation - o(n)
+// Big O Notation - O(n)
 
 // NOTE: Video Solution
 function FactorialOfNumberRecursive(n: number) {
