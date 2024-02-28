@@ -43,7 +43,7 @@
 // FibonacciSequenceRecursion(4);
 
 // NOTE: Video Solution
-// Big O Notation - O(2^n)
+// Big O Notation - O(2^n) - BAD
 function FibonacciSequenceRecursion(n: number): number {
   if (n < 2) {
     return n;
