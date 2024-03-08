@@ -8,6 +8,7 @@ class Queue {
     this.items.push(element);
   }
 
+  // Not optimal - O(n) - See QueueOptimized.ts for better solution
   dequeue() {
     return this.items.shift();
   }
