@@ -12,20 +12,24 @@ class Stack {
     return this.items.pop();
   }
 
-  peek() {
-    if (this.items.length == 0) {
-      return null;
-    }
-
-    return this.items[this.items.length - 1];
-  }
-
   getSize() {
     return this.items.length;
   }
 
   isEmpty() {
     return this.getSize() === 0;
+  }
+
+  peek() {
+    if (!this.isEmpty()) {
+      return this.items[this.items.length - 1];
+    }
+
+    return null;
+  }
+
+  print() {
+    console.log(this.items.toString());
   }
 }
 
@@ -39,3 +43,4 @@ console.log(cars.pop());
 console.log(cars);
 console.log(cars.getSize());
 console.log(cars.peek());
+cars.print();
