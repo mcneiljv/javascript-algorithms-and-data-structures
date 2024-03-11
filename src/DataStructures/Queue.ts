@@ -8,6 +8,8 @@ class Queue {
     this.items.push(element);
   }
 
+  // shift has a linear time complexity which is not favorable - O(n)
+  // see QueueOptimized for ideal solution
   dequeue() {
     return this.items.shift();
   }
