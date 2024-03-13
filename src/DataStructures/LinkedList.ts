@@ -67,7 +67,7 @@ class LinkedList {
     }
   }
 
-  remove(index) {
+  removeByIndex(index) {
     let removedNode;
     if (this.isEmpty()) {
       return console.log('List is empty');
@@ -88,6 +88,31 @@ class LinkedList {
     }
     this.size--;
     return removedNode.value;
+  }
+
+  removeByValue(value) {
+    let removedNode;
+    if (this.isEmpty()) {
+      return console.log('List is empty');
+    }
+
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      this.size--;
+      return value;
+    } else {
+      let prev = this.head;
+      while (prev.next && prev.next.value !== value) {
+        prev = prev.next;
+      }
+      if (prev.next) {
+        removedNode = prev.next;
+        prev.next = removedNode.next;
+        this.size--;
+        return value;
+      }
+      return console.log('Value not found in list');
+    }
   }
 
   print() {
@@ -114,7 +139,8 @@ list.append(30);
 list.print();
 list.insert(25, 2);
 list.print();
-list.remove(1);
+// list.removeByIndex(1);
+list.removeByValue(25);
 list.print();
 
 console.log('List is empty', list.isEmpty());
