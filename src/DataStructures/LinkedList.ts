@@ -20,6 +20,7 @@ class LinkedList {
     return this.size;
   }
 
+  // O(1) - Constant
   prepend(value) {
     const node = new Node(value);
     if (this.isEmpty()) {
@@ -29,6 +30,64 @@ class LinkedList {
       this.head = node;
     }
     this.size++;
+  }
+
+  // O(n) - Linear
+  // NOTE: It is possible to append an item in O(1) time by using head and rear pointers
+  append(value) {
+    const node = new Node(value);
+    if (this.isEmpty()) {
+      this.head = node;
+    } else {
+      let prev = this.head;
+      while (prev.next) {
+        prev = prev.next;
+      }
+      prev.next = node;
+    }
+    this.size++;
+  }
+
+  insert(value, index) {
+    if (index < 0 || index > this.size) {
+      return 'Invalid index';
+    }
+
+    if (index === 0) {
+      this.prepend(value);
+    } else {
+      const node = new Node(value);
+      let prev = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        prev = prev.next;
+      }
+      node.next = prev.next;
+      prev.next = node;
+      this.size++;
+    }
+  }
+
+  remove(index) {
+    let removedNode;
+    if (this.isEmpty()) {
+      return console.log('List is empty');
+    }
+    if (index < 0 || index >= this.size) {
+      return console.log('Invalid index');
+    }
+    if (index === 0) {
+      removedNode = this.head;
+      this.head = this.head.next;
+    } else {
+      let prev = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        prev = prev.next;
+      }
+      removedNode = prev.next;
+      prev.next = removedNode.next;
+    }
+    this.size--;
+    return removedNode.value;
   }
 
   print() {
@@ -47,11 +106,15 @@ class LinkedList {
 }
 
 const list = new LinkedList();
-list.prepend(10);
+list.append(10);
 list.print();
-list.prepend(20);
+list.append(20);
 list.print();
-list.prepend(30);
+list.append(30);
+list.print();
+list.insert(25, 2);
+list.print();
+list.remove(1);
 list.print();
 
 console.log('List is empty', list.isEmpty());
