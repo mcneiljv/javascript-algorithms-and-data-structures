@@ -79,7 +79,6 @@ class LinkedListWithTail {
 
   // O(n)
   removeFromEnd() {
-    const value = this.tail.value;
     if (this.isEmpty()) {
       return console.log('The list is empty');
     }
