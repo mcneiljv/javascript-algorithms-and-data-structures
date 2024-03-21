@@ -97,13 +97,15 @@ class LinkedListWithTail {
   }
 }
 
-const list = new LinkedListWithTail();
-console.log('Is list empty: ', list.isEmpty());
-console.log('List size: ', list.getSize());
-list.prepend(10);
-// list.append(20);
-// list.append(30);
-console.log('List size: ', list.getSize());
-list.removeFromFront();
-// list.removeFromEnd();
-list.print();
+// const list = new LinkedListWithTail();
+// console.log('Is list empty: ', list.isEmpty());
+// console.log('List size: ', list.getSize());
+// list.prepend(10);
+// // list.append(20);
+// // list.append(30);
+// console.log('List size: ', list.getSize());
+// list.removeFromFront();
+// // list.removeFromEnd();
+// list.print();
+
+module.exports = LinkedListWithTail;
