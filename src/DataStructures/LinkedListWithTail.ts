@@ -69,12 +69,13 @@ class LinkedListWithTail {
     if (this.size === 1) {
       this.head = null;
       this.tail = null;
+      this.size--;
     } else {
       const value = this.head.value;
       this.head = this.head.next;
+      this.size--;
       return value;
     }
-    this.size--;
   }
 
   // O(n)
@@ -85,6 +86,7 @@ class LinkedListWithTail {
     if (this.size === 1) {
       this.head = null;
       this.tail = null;
+      this.size--;
     } else {
       let prev = this.head;
       while (prev.next !== this.tail) {
@@ -92,8 +94,8 @@ class LinkedListWithTail {
       }
       prev.next = null;
       this.tail = prev;
+      this.size--;
     }
-    this.size--;
   }
 }
 
