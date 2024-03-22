@@ -62,28 +62,70 @@ class BinarySearchTree {
     }
   }
 
-  preorder(root: DataNode | null) {
+  preOrder(root: DataNode | null) {
     if (root) {
       console.log(root.value);
-      this.preorder(root.left);
-      this.preorder(root.right);
+      this.preOrder(root.left);
+      this.preOrder(root.right);
     }
   }
 
-  inorder(root: DataNode | null) {
+  inOrder(root: DataNode | null) {
     if (root) {
-      this.inorder(root.left);
+      this.inOrder(root.left);
       console.log(root.value);
-      this.inorder(root.right);
+      this.inOrder(root.right);
     }
   }
 
-  postorder(root: DataNode | null) {
+  postOrder(root: DataNode | null) {
     if (root) {
-      this.postorder(root.left);
-      this.postorder(root.right);
+      this.postOrder(root.left);
+      this.postOrder(root.right);
       console.log(root.value);
     }
+  }
+
+  // O(n)
+  levelOrder() {
+    // TODO: Use the QueueOptimized func
+    const queue: DataNode[] = [];
+    if (this.root) {
+      queue.push(this.root);
+      // queue = [10]
+      while (queue.length) {
+        let curr = queue.shift();
+        console.log(curr?.value);
+        if (curr?.left) {
+          queue.push(curr.left);
+        }
+        if (curr?.right) {
+          queue.push(curr.right);
+        }
+      }
+    }
+  }
+
+  min() {
+    if (this.isEmpty()) {
+      return 'The list is empty.';
+    }
+    let curr = this.root;
+    while (curr?.left) {
+      curr = curr.left;
+    }
+    return curr?.value;
+  }
+
+  max() {
+    if (this.isEmpty()) {
+      return 'The list is empty.';
+    }
+    let curr = this.root;
+    while (curr?.right) {
+      curr = curr.right;
+    }
+    return curr?.value;
   }
 }
 
@@ -96,6 +138,9 @@ tree.insert(15);
 tree.insert(3);
 tree.insert(7);
 console.log('search', tree.search(tree.root, 25));
-// tree.preorder(tree.root);
-// tree.inorder(tree.root);
-tree.postorder(tree.root);
+// tree.preOrder(tree.root);
+// tree.inOrder(tree.root);
+// tree.postOrder(tree.root);
+// tree.levelOrder();
+console.log('min val: ', tree.min());
+console.log('max val: ', tree.max());
