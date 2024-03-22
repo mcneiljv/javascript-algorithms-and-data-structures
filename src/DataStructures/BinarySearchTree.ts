@@ -106,11 +106,11 @@ class BinarySearchTree {
     }
   }
 
-  min() {
+  min(root: DataNode | null) {
     if (this.isEmpty()) {
-      return 'The list is empty.';
+      return null;
     }
-    let curr = this.root;
+    let curr = root;
     while (curr?.left) {
       curr = curr.left;
     }
@@ -119,13 +119,44 @@ class BinarySearchTree {
 
   max() {
     if (this.isEmpty()) {
-      return 'The list is empty.';
+      return null;
     }
     let curr = this.root;
     while (curr?.right) {
       curr = curr.right;
     }
     return curr?.value;
+  }
+
+  deleteNode(root: DataNode | null, value: number) {
+    if (!root) {
+      return root;
+    }
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+    } else {
+      // The node to be deleted is a leaf node
+      if (!root.left && !root.right) {
+        return null;
+      }
+      // The node to be deleted has one child node
+      if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      }
+      // The node has two child nodes
+      // @ts-ignore
+      root.value = this.min(root.right);
+      root.right = this.deleteNode(root.right, value);
+    }
+    return root;
+  }
+
+  delete(value: number) {
+    this.root = this.deleteNode(this.root, value);
   }
 }
 
@@ -141,6 +172,7 @@ console.log('search', tree.search(tree.root, 25));
 // tree.preOrder(tree.root);
 // tree.inOrder(tree.root);
 // tree.postOrder(tree.root);
-// tree.levelOrder();
-console.log('min val: ', tree.min());
+tree.delete(15);
+tree.levelOrder();
+console.log('min val: ', tree.min(tree.root));
 console.log('max val: ', tree.max());
